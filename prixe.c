@@ -1,0 +1,29 @@
+#include<stdio.h>
+main()
+{
+    int c=0,m=0,i,x;
+    for(i=0;i<3;i++)
+    {
+        scanf("%d",&x);
+        c+=x;
+    }
+    for(i=0;i<3;i++)
+    {
+        scanf("%d",&x);
+        m+=x;
+    }
+    scanf("%d",&x);
+    if(x==1)
+    {
+        if(c==0||m==0)
+            printf("YES");
+        else
+            printf("NO");
+    }
+    else{
+    if((c/5+m/10)<=x)
+        printf("YES");
+    else
+        printf("NO");
+    }
+}

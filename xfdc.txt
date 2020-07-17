@@ -1,0 +1,339 @@
+void hour(h)
+{
+    int h2=h%10;
+    if(h>=10)h1=1;
+    else h1=0;
+    iLine("")
+}
+void(int x)
+{
+    
+}
+
+
+
+
+# include "iGraphics.h"
+/*by EFAZ*/
+
+    int sh=43,sw=34;
+	int i=0,j,yeah;
+	int year,month;
+	int h,m,s;
+	int circle_x=100,circle_y=100;
+    int time_len;
+    char showtextyear[100];
+	char showtextmonth[100];
+
+	//*********ALL VARIABLE CALL****//
+
+
+	void drawgrid()
+	{
+	    iSetColor(0,10,204);
+        iFilledRectangle(48,63,672,434);
+        iSetColor(255,255,255);
+        iRectangle(48,63,672,434);
+        iLine(48,125,720,125);
+        iLine(48,187,720,187);
+        iLine(48,249,720,249);
+        iLine(48,311,720,311);
+        iLine(48,373,720,373);
+        iLine(48,435,720,435);
+        iLine(144,63,144,497);
+        iLine(240,63,240,497);
+        iLine(336,63,336,497);
+        iLine(432,63,432,497);
+        iLine(528,63,528,497);
+        iLine(624,63,624,497);
+        iText(76,457,"SAT",GLUT_BITMAP_HELVETICA_18);
+        iText(168,457,"SUN",GLUT_BITMAP_HELVETICA_18);
+        iText(265,457,"MON",GLUT_BITMAP_HELVETICA_18);
+        iText(359,457,"TUE",GLUT_BITMAP_HELVETICA_18);
+        iText(456,457,"WED",GLUT_BITMAP_HELVETICA_18);
+        iText(557,457,"THU",GLUT_BITMAP_HELVETICA_18);
+        iText(652,457,"FRI",GLUT_BITMAP_HELVETICA_18);
+
+        }
+
+
+    void getyear()
+    {
+        yeah=4;
+
+    }
+    void getmonth()
+    {
+        yeah=5;
+
+    }
+
+	//code for calender
+	void nthseg(int x,int y,int nth)
+	{
+	    switch(nth)
+	    {
+        case 1:
+            {
+               iLine(x+1,y+2+sh,x+1+sw,y+2+sh);
+               break;
+            }
+        case 2:
+            {
+                iLine(x,y+1,x,y+1+sh);
+                break;
+            }
+        case 3:
+            {
+                iLine(x+2+sw,y+1,x+2+sw,y+1+sh);
+                break;
+            }
+        case 4:
+            {
+                iLine(x+1,y,x+1+sw,y);
+                break;
+            }
+        case 5:
+            {
+                iLine(x,y-1,x,y-1-sh);
+                break;
+            }
+        case 6:
+            {
+                iLine(x+1,y-2-sh,x+1+sw,y-2-sh);
+                break;
+            }
+        case 7:
+            {
+                iLine(x+2+sw,y-1-sh,x+2+sw,y-1);
+                break;
+            }
+	    }
+	}
+	void isegdraw(int x,int y,int num)
+	{
+       switch(num)
+       {
+       case 0:
+        {
+           nthseg(x,y,2);
+           nthseg(x,y,1);
+           nthseg(x,y,3);
+           nthseg(x,y,5);
+           nthseg(x,y,6);
+           nthseg(x,y,7);
+           break;
+        }
+       case 1:
+        {
+            nthseg(x,y,3);
+            nthseg(x,y,7);
+            break;
+        }
+        case 2:
+        {
+            nthseg(x,y,1);
+            nthseg(x,y,3);
+            nthseg(x,y,4);
+            nthseg(x,y,5);
+            nthseg(x,y,6);
+            break;
+        }
+        case 3:
+            {
+                nthseg(x,y,1);
+                nthseg(x,y,3);
+                nthseg(x,y,4);
+                nthseg(x,y,7);
+                nthseg(x,y,6);
+                break;
+            }
+        case 4:
+            {
+                nthseg(x,y,2);
+                nthseg(x,y,4);
+                nthseg(x,y,3);
+                nthseg(x,y,7);
+                break;
+            }
+        case 5:
+            {
+                nthseg(x,y,1);
+                nthseg(x,y,2);
+                nthseg(x,y,4);
+                nthseg(x,y,7);
+                nthseg(x,y,6);
+                break;
+            }
+        case 6:
+            {
+                nthseg(x,y,1);
+                nthseg(x,y,2);
+                nthseg(x,y,5);
+                nthseg(x,y,6);
+                nthseg(x,y,7);
+                nthseg(x,y,4);
+                break;
+            }
+        case 7:
+            {
+                nthseg(x,y,1);
+                nthseg(x,y,3);
+                nthseg(x,y,7);
+                break;
+            }
+        case 8:
+            {
+                nthseg(x,y,1);
+                nthseg(x,y,2);
+                nthseg(x,y,3);
+                nthseg(x,y,4);
+                nthseg(x,y,5);
+                nthseg(x,y,6);
+                nthseg(x,y,7);
+                break;
+            }
+        case 9:
+            {
+                nthseg(x,y,2);
+                nthseg(x,y,1);
+                nthseg(x,y,3);
+                nthseg(x,y,4);
+                nthseg(x,y,7);
+                nthseg(x,y,6);
+                break;
+            }
+       }
+	}
+	void timenow(int h,int m, int s)
+	{
+    time_t seconds;
+    time(&seconds);
+    seconds=seconds%86400;
+    seconds=seconds+21600;
+    s=seconds%60;
+    m=(seconds/60)%60;
+    h=(seconds/3600)%24;
+    if(h>12)
+    {
+        h=h%12;
+        iText(1144,505,"PM",GLUT_BITMAP_TIMES_ROMAN_24);
+    }
+    else
+    {
+       iText(1144,505,"AM",GLUT_BITMAP_TIMES_ROMAN_24);
+    }
+
+       int h1,h2,m1,m2,s1,s2;
+       h1=h/10;
+       m1=m/10;
+       s1=s/10;
+       h2=h%10;
+       m2=m%10;
+       s2=s%10;
+       isegdraw(840,550,h1);
+       isegdraw(882,550,h2);
+       isegdraw(944,550,m1);
+       isegdraw(986,550,m2);
+       isegdraw(1048,550,s1);
+       isegdraw(1090,550,s2);
+	}
+
+	//code for clock..
+
+void iDraw() {
+iClear();
+iSetColor(0,128,255);
+iFilledRectangle(0,0,800,700);
+iSetColor(0,00,255);
+iFilledRectangle(800,0,400,700);
+iSetColor(255,255,255);
+iFilledCircle(929,576,2);
+iFilledCircle(929,529,2);
+iFilledCircle(1032,576,2);
+iFilledCircle(1032,529,2);
+timenow(h,m,s);
+drawgrid();
+iText(835,252,"ENTER YEAR",GLUT_BITMAP_HELVETICA_18);
+iText(835,149,"ENTER MONTH",GLUT_BITMAP_HELVETICA_18);
+iRectangle(835,203,214,30);
+iRectangle(835,95,214,30);
+if(yeah==4)  {
+        iFilledRectangle(835,203,214,30);
+        iSetColor(0,0,0);
+      iText(918,214,showtextyear,GLUT_BITMAP_HELVETICA_12);
+}
+
+if(yeah==5){
+        iFilledRectangle(835,95,214,30);
+        iSetColor(0,0,0);
+        iText(919,105,showtextmonth,GLUT_BITMAP_HELVETICA_12);
+}
+
+}
+
+
+
+/*
+	function iMouseMove() is called when the user presses and drags the mouse.
+	(mx, my) is the position where the mouse pointer is.
+	*/
+void iMouseMove(int mx, int my) {
+	printf("x = %d, y= %d\n",mx,my);
+	circle_x=mx;
+	circle_y=my;
+}
+
+/*
+	function iMouse() is called when the user presses/releases the mouse.
+	(mx, my) is the position where the mouse pointer is.
+	*/
+void iMouse(int button, int state,int mx, int my) {
+if  (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN&&mx>=835&&mx<=1048&&my>=204&&my<=234) {
+			printf("x = %d, y= %d\n",mx,my);
+            getyear();
+	}
+	else if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN&&mx>=835&&mx<=1048&&my>=98&&my<=126)
+    {
+        getmonth();
+    }
+}
+
+/*
+	function iKeyboard() is called whenever the user hits a key in keyboard.
+	key- holds the ASCII value of the key pressed.
+	*/
+void iKeyboard(unsigned char key) {
+    if(yeah==4){
+	showtextyear[time_len]=key;
+	time_len++;
+    }
+    else if(yeah==5)
+    {
+	showtextmonth[time_len]=key;
+	time_len++;
+    }
+}
+
+/*
+	function iSpecialKeyboard() is called whenver user hits special keys like-
+	function keys, home, end, pg up, pg down, arraows etc. you have to use
+	appropriate constants to detect them. A list is:
+	GLUT_KEY_F1, GLUT_KEY_F2, GLUT_KEY_F3, GLUT_KEY_F4, GLUT_KEY_F5, GLUT_KEY_F6,
+	GLUT_KEY_F7, GLUT_KEY_F8, GLUT_KEY_F9, GLUT_KEY_F10, GLUT_KEY_F11, GLUT_KEY_F12,
+	GLUT_KEY_LEFT, GLUT_KEY_UP, GLUT_KEY_RIGHT, GLUT_KEY_DOWN, GLUT_KEY_PAGE UP,
+	GLUT_KEY_PAGE DOWN, GLUT_KEY_HOME, GLUT_KEY_END, GLUT_KEY_INSERT
+	*/
+
+
+
+int main() {
+    iInitialize(1200, 700, "my first project");
+    iClear();
+	return 0;
+
+}
+
+
+
+

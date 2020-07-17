@@ -1,0 +1,20 @@
+#include<stdio.h>
+main()
+{
+    int n,sum=0,x,count=0,i;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&x);
+        if(x!=-1)
+            sum+=x;
+        else
+        {
+            if(sum>0)
+                sum--;
+            else
+                count++;
+        }
+    }
+    printf("%d",count);
+}
